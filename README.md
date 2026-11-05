@@ -4,10 +4,15 @@ Projeto Final do segundo ano no Curso Técnico Integrado ao Médio de Desenvolvi
 ## Integrantes
 | Nome | E-mail | Diário |
 | --- | --- | --- |
-| [Dafny Heloa da Silva Lins](@DafnyLins06) | <dhsl1@aluno.ifal.edu.br> | |
-| [Derick Davi Veríssimo Marinho](@Redestroyer) | <ddvm1@aluno.ifal.edu.br> | |
-| [Hiago Alves Barboza](@hab2-cloud) | <hab2@aluno.ifal.edu.br> | |
+| [Dafny Heloa da Silva Lins][@DafnyLins06] | <dhsl1@aluno.ifal.edu.br> | |
+| [Derick Davi Veríssimo Marinho][@Redestroyer] | <ddvm1@aluno.ifal.edu.br> | |
+| [Hiago Alves Barboza][@hab2-cloud] | <hab2@aluno.ifal.edu.br> | |
 
 ## Diagrama de Banco
-![Diagrama conceitual](/banco/Diagrama.Conceitual.png)
+![Diagrama conceitual](/banco/Diagrama.Conceitual.png)  
 **A SER FEITO**: Criar o diagrama lógico e pôr a imagem aqui
+
+[@DafnyLins06]: https://github.com/DafnyLins06
+[@Redestroyer]: https://github.com/Redestroyer
+[@hab2-cloud]: https://github.com/hab2-cloud
+
