@@ -3,26 +3,16 @@ CREATE DATABASE GestaoDeAcademia;
 USE GestaoDeAcademia;
 
 CREATE TABLE Usuario (
-	CPF VARCHAR(11) NOT NULL,
+	CPF CHAR(11) NOT NULL,
     Nome VARCHAR(100) NOT NULL,
     DataNascimento DATE,
     Sexo VARCHAR(10),
     Email VARCHAR(100) UNIQUE,
     Telefone VARCHAR(20),
+    Cargo ENUM("ADM", "ALN") NOT NULL,
     PRIMARY KEY (CPF)
 );
 
-CREATE TABLE Administrador (
-	CPF_Usuario VARCHAR(11) NOT NULL,
-    PRIMARY KEY (CPF_Usuario),
-    FOREIGN KEY (CPF_Usuario) REFERENCES Usuario(CPF)
-);
-
-CREATE TABLE Aluno (
-	CPF_Usuario VARCHAR(11) NOT NULL,
-    PRIMARY KEY (CPF_Usuario),
-    FOREIGN KEY (CPF_Usuario) REFERENCES Usuario(CPF)
-);
 
 CREATE TABLE Plano (
 	ID INT AUTO_INCREMENT NOT NULL,

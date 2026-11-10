@@ -15,7 +15,9 @@ Projeto Final do segundo ano no Curso Técnico Integrado ao Médio de Desenvolvi
 
 ## Diagrama de Banco
 ![Diagrama conceitual](/banco/Diagrama.Conceitual.png)  
-**A SER FEITO**: Criar o diagrama lógico e pôr a imagem aqui
+ 
+## Diagrama Lógico
+![Diagrama logico](/banco/Diagrama.Logico.png)
 
 ## Diagrama de Classe
 ![Diagrama de Classe](/banco/Diagrama.inicial.png)
