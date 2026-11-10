@@ -1,2 +1,7 @@
-# 2026-05-11
-Modelei o [diagrama conceitual](/banco/Diagrama.Conceitual.brM3).
+# 2026-11-05
+Modelei o [diagrama conceitual][].
+
+# 2026-11-10
+Modifiquei o [diagrama conceitual][] para adicionar atributos `Senha` a `Aluno` e `ID` a `Mensalidade`.
+
+[diagrama conceitual]: /banco/Diagrama.Conceitual.brM3
