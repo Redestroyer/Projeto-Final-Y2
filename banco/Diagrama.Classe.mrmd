@@ -1,0 +1,96 @@
+classDiagram
+direction TB
+    class Usuario {
+	    -int cpf
+	    -String nomeUsuario
+	    -String nomeReal
+	    -String email
+	    -String telefone
+	    -date dataNascimento
+	    -String senha
+	    -String tipo
+	    +login()
+	    +logout()
+    }
+    class Administrador {
+	    +cadastrar()
+	    +atualizar()
+	    +consultar()
+    }
+    class Plano {
+	    -int id
+	    -String nome
+	    -int duracao
+	    -double valor
+	    -String descricao
+	    -boolean ativo
+	    +cadastrar()
+	    +atualizar()
+	    +consultar()
+    }
+    class Mensalidade {
+	    -int id
+	    -Date dataGeracao
+	    -Date dataVencimento
+	    -Date dataPagamento
+	    -double valor
+	    -String status
+	    +gerar()
+	    +registrarPagamento()
+	    +verificarAtraso()
+    }
+    class Exercicio {
+	    -int id
+	    -String nome
+	    -String grupoMuscular
+	    -String descricao
+	    -String tipo
+	    -boolean ativo
+	    +cadastrar()
+	    +atualizar()
+	    +consultar()
+    }
+    class ItemFicha {
+	    -int id
+	    -int series
+	    -int repeticoes
+	    -double carga
+	    +adicionar()
+	    +atualizarCarga()
+	    +atualizarRepeticoes()
+    }
+    class RegistroTreino {
+	    -int id
+	    -Date dataTreino
+	    -String observacao
+	    -boolean realizado
+	    +registrar()
+	    +consultarHistorico()
+	    +registrarCarga()
+    }
+    class FichaTreino {
+	    int id
+	    string letra
+	    date dataCriacao
+	    date Validade
+	    string observacao
+	    boolean ativa
+	    +criar()
+	    +adcionarExercicio()
+	    +removereExercicio()
+	    +verificarValidade()
+    }
+    class Aluno {
+        +cadastrar()
+	    +atualizar()
+	    +consultar()
+    }
+
+    Usuario <|-- Aluno
+    Usuario <|-- Administrador
+    Plano "1" --> "*" Aluno : possui
+    Aluno "1" --> "*" Mensalidade : possui
+    FichaTreino "1" --> "1..*" ItemFicha : contem
+    Exercicio "1" --> "0..*" ItemFicha : utilizado
+    RegistroTreino "1" --> "1..*" ItemFicha : registra
+    Aluno "1" --> "*" FichaTreino
