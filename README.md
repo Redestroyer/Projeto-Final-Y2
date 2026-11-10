@@ -17,6 +17,9 @@ Projeto Final do segundo ano no Curso Técnico Integrado ao Médio de Desenvolvi
 ![Diagrama conceitual](/banco/Diagrama.Conceitual.png)  
 **A SER FEITO**: Criar o diagrama lógico e pôr a imagem aqui
 
+## Diagrama de Classe
+![Diagrama de Classe](/banco/Diagrama inicial-2026-11-10-095018.png)
+
 [@DafnyLins06]: https://github.com/DafnyLins06
 [`dafny.md`]: /diario/dafny.md
 [@Redestroyer]: https://github.com/Redestroyer
