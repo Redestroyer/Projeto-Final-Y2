@@ -93,4 +93,4 @@ direction TB
     FichaTreino "1" --> "1..*" ItemFicha : contem
     Exercicio "1" --> "0..*" ItemFicha : utilizado
     RegistroTreino "1" --> "1..*" ItemFicha : registra
-    Aluno "1" --> "*" FichaTreino
+    Plano "1" --> "*" FichaTreino
