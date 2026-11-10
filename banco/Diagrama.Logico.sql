@@ -45,7 +45,7 @@ CREATE TABLE Mensalidade (
     ID_Matricula INT NOT NULL,
     Valor DECIMAL(10,2) NOT NULL,
     Validade DATE NOT NULL,
-    Pago TINYINT(1) DEFAULT 0,
+    Pago TINYINT(1) NOT NULL DEFAULT 0,
     PRIMARY KEY (ID),
     FOREIGN KEY (ID_Matricula) REFERENCES Matricula(ID)
 );
