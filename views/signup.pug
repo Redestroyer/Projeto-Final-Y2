@@ -1,0 +1,9 @@
+extends layout.pug
+
+block content
+  form(action="/signup", method="post")
+    label(for="cpf") CPF:
+      input#cpf(type="text", name="cpf")
+    label(for="nome") Nome:
+      input#nome(type="text", name="nome")
+

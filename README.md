@@ -9,12 +9,13 @@ Projeto Final do segundo ano no Curso Técnico Integrado ao Médio de Desenvolvi
 | [Hiago Alves Barboza][@hab2-cloud] | <hab2@aluno.ifal.edu.br> | [`hiago.md`][] |
 
 ## Ferramentas a empregar
+* [Bun][]: *runtime* e gerenciador de pacotes JavaScript ágil.
 * [Hono][]: motor de servidor HTTP simples, flexível e minimalista.
 * [TailwindCSS][]: motor de estilização CSS flexível, configurável, abrangente e visualmente moderno.
 * [PugJS][]: motor de moldagem HTML capaz de reduzir repetição de código e verter dinamicamente com diferentes valores.
 
 ## Diagrama de Banco
-![Diagrama conceitual](/banco/Diagrama.Conceitual.png)  
+![Diagrama conceitual](/banco/Diagrama.Conceitual.png)
  
 ## Diagrama Lógico
 ![Diagrama logico](/banco/Diagrama.Logico.png)
@@ -29,6 +30,7 @@ Projeto Final do segundo ano no Curso Técnico Integrado ao Médio de Desenvolvi
 [@hab2-cloud]: https://github.com/hab2-cloud
 [`hiago.md`]: /diario/hiago.md
 
+[Bun]: https://bun.sh
 [Hono]: https://hono.dev
 [TailwindCSS]: https://tailwindcss.com
 [PugJS]: https://pugjs.org
