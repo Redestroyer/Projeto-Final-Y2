@@ -1,4 +1,10 @@
 extends layout.pug
 
 block content
-  h1 Entrada de usuário.
+  div.w-full.h-full.place-content-center.pt-32.px-128
+    form.place-content-center.text-center.border-4.rounded-md.border-slate-300.bg-slate-100.px-16.py-8(action="/", method="post")
+      div.place-content-center.text-left
+        label(for="cpf") CPF: #[input.border-2.rounded-md.border-slate-200#cpf(type="text", name="cpf")]
+        label(for="password") Senha: #[input.border-2.rounded-md.border-slate-200#password(type="password", name="password")]
+      button(type="submit") Entrar
+      p Esqueceste tua senha? #[a(href="mailto:ddvm1@aluno.ifal.edu.br") Contate-nos]

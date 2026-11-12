@@ -1,9 +1,19 @@
 extends layout.pug
 
 block content
-  form(action="/signup", method="post")
-    label(for="cpf") CPF:
-      input#cpf(type="text", name="cpf")
-    label(for="nome") Nome:
-      input#nome(type="text", name="nome")
+  div.w-full.h-full.place-content-center.pt-32
+    form.grid.grid-cols-3.gap-4(action="/signup", method="post")
+      label.col-span-2(for="nome") Nome: #[input#nome(type="text", name="nome" required)]
+      label(for="cpf") CPF: #[input#cpf(type="text", name="cpf" required)]
+      label.col-span-2(for="email") E-mail: #[input#email(type="email", name="email" required)]
+      label(for="tele") Telefone: #[input#tele(type="tel", name="tele" required)]
+      label.col-span-2(for="nasc") Data de Nascimento: #[input#nasc(type="date", name="nasc" required)]
+      label(for="sexo") Sexo: 
+        select#sexo(name="sexo" required)
+          option(value="n") Não Binário
+          option(value="m") Masculino
+          option(value="f") Feminino
+      label(for="password") Senha: #[input#password(type="password", name="password" required)]
+      label(for="repassword") Confirmar Senha: #[input#password(type="password", name="repassword" required)]
+      button(type="submit") Cadastrar
 
