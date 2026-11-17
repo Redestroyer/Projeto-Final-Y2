@@ -9,4 +9,10 @@ Criei as rotas de navegador e as views.
 # 2026-11-12
 Escrevi as telas de [entrada](/views/login.pug) e [cadastro](/views/signup.pug) de usuário.
 
+# 2026-11-16
+Melhorei [`formFields.tsx`](/src/components/formFields.tsx) e iniciei [`proxy.ts`](/src/app/proxy.ts).
+
+# 2026-11-17
+Modularizei as páginas.
+
 [diagrama conceitual]: /banco/Diagrama.Conceitual.brM3
