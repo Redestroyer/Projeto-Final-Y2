@@ -15,4 +15,7 @@ Melhorei [`formFields.tsx`](/src/components/formFields.tsx) e iniciei [`proxy.ts
 # 2026-11-17
 Modularizei as páginas.
 
+# 2026-11-18
+Iniciei o layout de `/dashboard`.
+
 [diagrama conceitual]: /banco/Diagrama.Conceitual.brM3
