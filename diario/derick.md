@@ -6,4 +6,19 @@ Modifiquei o [diagrama conceitual][] para adicionar atributos `Senha` a `Aluno` 
 Inicializei o pacote de projeto Bun com comando `bun create hono@latest my-app`.
 Criei as rotas de navegador e as views.
 
+# 2026-11-12
+Escrevi as telas de [entrada](/views/login.pug) e [cadastro](/views/signup.pug) de usuário.
+
+# 2026-11-16
+Melhorei [`formFields.tsx`](/src/components/formFields.tsx) e iniciei [`proxy.ts`](/src/app/proxy.ts).
+
+# 2026-11-17
+Modularizei as páginas.
+
+# 2026-11-18
+Iniciei o layout de `/dashboard`, incluindo um esqueleto para navegação.
+
+# 2026-11-19
+Iniciei a estilização das telas de autenticação.
+
 [diagrama conceitual]: /banco/Diagrama.Conceitual.brM3

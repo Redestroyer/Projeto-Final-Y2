@@ -10,9 +10,9 @@ Projeto Final do segundo ano no Curso Técnico Integrado ao Médio de Desenvolvi
 
 ## Ferramentas a empregar
 * [Bun][]: *runtime* e gerenciador de pacotes JavaScript ágil.
-* [Hono][]: motor de servidor HTTP simples, flexível e minimalista.
+* [Jose][]: biblioteca JavaScript para encifrar, validar e decifrar objetos JSON e fichas JWT.
+* [NextJS][]: *framework* *fullstack* baseada em React para o *front-end*.
 * [TailwindCSS][]: motor de estilização CSS flexível, configurável, abrangente e visualmente moderno.
-* [PugJS][]: motor de moldagem HTML capaz de reduzir repetição de código e verter dinamicamente com diferentes valores.
 
 ## Diagrama de Banco
 ![Diagrama conceitual](/banco/Diagrama.Conceitual.png)
@@ -34,5 +34,7 @@ Projeto Final do segundo ano no Curso Técnico Integrado ao Médio de Desenvolvi
 [Hono]: https://hono.dev
 [TailwindCSS]: https://tailwindcss.com
 [PugJS]: https://pugjs.org
+[NextJS]: https://nextjs.org
+[Jose]: https://www.npmjs.com/package/jose
 
 [RULEBOOK]: https://docs.google.com/document/d/1ekSitklC8l7GNgB57n81PTTlCHT80YWE_9BawfEOq7A/edit?usp=sharing
