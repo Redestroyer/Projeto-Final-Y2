@@ -1,15 +1,21 @@
 import type { JSX } from "react/jsx-runtime";
+import { redirect } from "next/navigation";
+import DashboardWrapper from "@/app/dashboard/dashboard-wrapper";
+import { getUser } from "@/actions/auth";
 import NavBar from "./nav-bar";
-import UserContext from "components/user-context";
 
-export default function DashboardLayout({ children }: LayoutProps<"/dashboard">): JSX.Element {
+export default async function DashboardLayout({ children }: LayoutProps<"/dashboard">): Promise<JSX.Element> {
+  const user = await getUser();
+  if (!user)
+    redirect("/login")
+
   return (
-    <UserContext value={{ name: "(usuário)" }}>
+    <DashboardWrapper user={user}>
       <NavBar />
       <main>
         {children}
       </main>
-    </UserContext>
+    </DashboardWrapper>
   )
 }
 

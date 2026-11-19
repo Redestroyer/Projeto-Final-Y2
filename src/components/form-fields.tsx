@@ -1,7 +1,7 @@
 "use client";
 
-import type { GlobalAttributes } from "components";
-import { formatYMD } from "lib/datetime";
+import type { GlobalAttributes } from "@/components";
+import { formatYMD } from "@/lib/datetime";
 import { createContext, useContext, useState, type ChangeEventHandler, type ComponentPropsWithRef, type Ref, type RefObject } from "react";
 import type { JSX } from "react/jsx-runtime";
 

@@ -5,8 +5,7 @@
     "dev": "bunx --bun next dev",
     "build": "bunx --bun next build",
     "start": "bunx --bun next start",
-    "typegen": "bunx --bun next typegen",
-    "lint": "bun lint"
+    "typegen": "bunx --bun next typegen"
   },
   "dependencies": {
     "next": "^16.4.6",

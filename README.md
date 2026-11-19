@@ -10,6 +10,7 @@ Projeto Final do segundo ano no Curso Técnico Integrado ao Médio de Desenvolvi
 
 ## Ferramentas a empregar
 * [Bun][]: *runtime* e gerenciador de pacotes JavaScript ágil.
+* [Jose][]: biblioteca JavaScript para encifrar, validar e decifrar objetos JSON e fichas JWT.
 * [NextJS][]: *framework* *fullstack* baseada em React para o *front-end*.
 * [TailwindCSS][]: motor de estilização CSS flexível, configurável, abrangente e visualmente moderno.
 
@@ -34,5 +35,6 @@ Projeto Final do segundo ano no Curso Técnico Integrado ao Médio de Desenvolvi
 [TailwindCSS]: https://tailwindcss.com
 [PugJS]: https://pugjs.org
 [NextJS]: https://nextjs.org
+[Jose]: https://www.npmjs.com/package/jose
 
 [RULEBOOK]: https://docs.google.com/document/d/1ekSitklC8l7GNgB57n81PTTlCHT80YWE_9BawfEOq7A/edit?usp=sharing

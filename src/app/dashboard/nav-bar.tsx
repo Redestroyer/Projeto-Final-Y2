@@ -1,26 +1,48 @@
-import { useUser } from "components/user-context";
-import { cls } from "lib/css";
+"use client";
+
+import type { JSX } from "react/jsx-runtime";
+import type { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { ComponentPropsWithRef } from "react";
-import type { JSX } from "react/jsx-runtime";
+import { unauthenticate, type UserRole } from "@/actions/auth";
+import { useUser } from "@/app/dashboard/dashboard-wrapper";
+import { cls } from "@/lib/css";
+
+type NavLinkData = { name: string; url: string; };
+const sharedLinks: NavLinkData[] = [
+  { name: "Início", url: "" }
+];
+const linksByRole: {
+  [Role in UserRole]: NavLinkData[];
+} = {
+  ALN: [],
+  PRF: [],
+  ADM: [
+    { name: "Professores", url: "professors" },
+    { name: "Alunos", url: "students" },
+    { name: "Planos", url: "plans" },
+    { name: "Mensalidades", url: "payments" },
+    { name: "Relatórios", url: "reports" }
+  ]
+};
 
 export default function NavBar(): JSX.Element {
-  const links: { url: string, name: string }[] = [];
+  const { role } = useUser();
+  const links = [...sharedLinks, ...linksByRole[role]];
 
   return (
     <nav>
       <UserHeader />
-      {links.map((link, i) => (<NavLink href={link.url} key={i}>{link.name}</NavLink>))}
+      {links.map((link, i) => (<NavLink href={`/dashboard/${link.url}`} key={link.name}>{link.name}</NavLink>))}
     </nav>
   )
 }
 
 function UserHeader(): JSX.Element {
   const { name } = useUser();
-  function logOut() {
+  async function logOut() {
     if (!confirm("Gostarias mesmo de desautenticar?")) return;
-    console.log("Logging out...");
+    await unauthenticate();
   }
 
   return (
@@ -31,8 +53,7 @@ function UserHeader(): JSX.Element {
   );
 }
 
-
-function NavLink({ className, ...props }: ComponentPropsWithRef<typeof Link>): JSX.Element {
+function NavLink({ className, ...props }: ComponentPropsWithoutRef<typeof Link>): JSX.Element {
   const currentUrl = usePathname();
   if (currentUrl == props.href)
     return (

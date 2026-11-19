@@ -1,6 +1,6 @@
 "use client";
 
-import { DateField, EmailField, Label, PasswordField, Select, TelephoneField, TextField } from "components/form-fields";
+import { DateField, EmailField, Label, PasswordField, Select, TelephoneField, TextField } from "@/components/form-fields";
 import { useRef } from "react";
 
 import { CPFPattern } from "..";
