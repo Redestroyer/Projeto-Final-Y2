@@ -1,72 +1,36 @@
-CREATE DATABASE GestaoDeAcademia;
+CREATE DATABASE GestaoAcademia;
 
-USE GestaoDeAcademia;
+USE GestaoAcademia;
 
 CREATE TABLE Usuario (
-	CPF CHAR(11) NOT NULL,
+    CPF VARCHAR(14) PRIMARY KEY,
     Nome VARCHAR(100) NOT NULL,
-    DataNascimento DATE,
-    Sexo VARCHAR(10),
-    Email VARCHAR(100) UNIQUE,
-    Telefone VARCHAR(20),
-    Cargo ENUM("ADM", "ALN") NOT NULL,
-    PRIMARY KEY (CPF)
+    dataNasc DATE NOT NULL,
+    Sexo CHAR(1),
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Senha VARCHAR(8) NOT NULL,
+    Telefone VARCHAR(11)
 );
 
+CREATE TABLE Administrador (
+    CPF VARCHAR(14) PRIMARY KEY,
+	FOREIGN KEY (CPF) REFERENCES Usuario(CPF) 
+);
+
+CREATE TABLE Professor (
+    CPF VARCHAR(14) PRIMARY KEY,
+    CREF VARCHAR(20) UNIQUE NOT NULL,
+    Especialidade VARCHAR(100),
+    Ativo BOOLEAN DEFAULT TRUE,
+	FOREIGN KEY (cpf) REFERENCES Usuario(CPF) 
+);
 
 CREATE TABLE Plano (
-	ID INT AUTO_INCREMENT NOT NULL,
-    Tipo VARCHAR(50),
+    id INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(100) NOT NULL,
-    Descricao TEXT,
-    PRIMARY KEY (ID)
+    DuracaoMeses INT NOT NULL,
+    Valor DECIMAL(10, 2) NOT NULL,
+    DiaVencimento INT NOT NULL,
+    Cobranca VARCHAR(50),
+    Ativo BOOLEAN DEFAULT TRUE
 );
-
-CREATE TABLE Exercicio (
-	ID INT AUTO_INCREMENT NOT NULL,
-    Tipo VARCHAR(50),
-    Nome VARCHAR(100) NOT NULL,
-    Descricao TEXT,
-    PRIMARY KEY (ID)
-);
-
-CREATE TABLE Matricula (
-	ID INT AUTO_INCREMENT NOT NULL,
-    CPF_Aluno VARCHAR (11) NOT NULL,
-    ID_Plano INT NOT NULL,
-    Inicio DATE NOT NULL,
-    PRIMARY KEY (ID),
-    FOREIGN KEY (CPF_Aluno) REFERENCES Aluno(CPF_Usuario),
-    FOREIGN KEY (ID_Plano) REFERENCES Plano(ID)
-);
-
-CREATE TABLE Mensalidade (
-	ID INT AUTO_INCREMENT NOT NULL,
-    ID_Matricula INT NOT NULL,
-    Valor DECIMAL(10,2) NOT NULL,
-    Validade DATE NOT NULL,
-    Pago TINYINT(1) NOT NULL DEFAULT 0,
-    PRIMARY KEY (ID),
-    FOREIGN KEY (ID_Matricula) REFERENCES Matricula(ID)
-);
-
-CREATE TABLE FichaDeTreino (
-	ID INT AUTO_INCREMENT NOT NULL,
-    CPF_aluno VARCHAR(11) NOT NULL,
-    ID_Plano INT NOT NULL,
-    Validade DATE,
-    PRIMARY KEY (ID),
-    FOREIGN KEY (CPF_Aluno) REFERENCES Aluno(CPF_Usuario),
-    FOREIGN KEY (ID_Plano) REFERENCES Plano(ID)
-);
-
-CREATE TABLE Incluir (
-	ID_Ficha INT NOT NULL,
-    ID_Exercicio INT NOT NULL,
-    Series INT,
-    Repeticoes INT,
-    Carga DECIMAL (6,2),
-    PRIMARY KEY (ID_Ficha,Id_Exercicio),
-    FOREIGN KEY (ID_Ficha) REFERENCES Ficha(ID),
-    FOREIGN KEY (ID_Exercicio) REFERENCES Exercicio(ID)
-)
