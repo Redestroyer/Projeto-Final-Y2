@@ -10,5 +10,5 @@ export function cls(template: TemplateStringsArray, ...data: any[]): string {
       result.push(`${tmp.trim()}${String(v).trim()}`)
     }
   });
-  return `${result.join(" ")} ${template.at(-1)}`;
+  return `${result.join(" ")}${template.at(-1)}`;
 }
