@@ -3,23 +3,34 @@
 import Form from "next/form";
 import Link from "next/link";
 import { authenticate } from "@/actions/auth";
-import { Label, PasswordField, TextField } from "@/components/form-fields";
+import { InvalidationWrapper, InvalidNotice, Label, PasswordField, SubmitButton, TextField } from "@/components/form-fields";
 import { CPFPattern } from "..";
-import { useActionState } from "react";
 
 export default function LoginPage() {
-  const [state, formAction, pending] = useActionState(authenticate, { status: "initial" })
+  async function formAction(data: FormData) {
+    const result = await authenticate(data);
+    if (result.status == "failure") {
+      alert(`Erro ao autenticar: ${result.error}`);
+      return;
+    } else {
+      const { token } = result;
+      alert(`Token "${token}" acquired!`);
+    }
+  }
 
   return (
     <>
     <Form className="relative space-y-5 font-semibold" action={formAction}>
       <h1 className="font-bold text-3xl">Autenticação</h1>
       <div className="grid grid-cols-2">
-        <Label htmlFor="cpf">CPF: <TextField pattern={CPFPattern} placeholder="123.456.789-10" required /></Label>
+        <Label htmlFor="cpf">CPF: <InvalidationWrapper>
+          <TextField pattern={CPFPattern} placeholder="123.456.789-10" required />
+          <InvalidNotice className="border rounded-sm border-red-500 bg-red-400 text-red-600">CPF deve seguir o padrão XXX.XXX.XXX-XX</InvalidNotice>
+        </InvalidationWrapper></Label>
         <Label htmlFor="password">Senha: <PasswordField placeholder="Tua senha..." required /></Label>
       </div>
       <div className="flex flex-row-reverse w-full">
-        <button className="static bottom-0 right-0 bg-green-400 text-white disabled:bg-slate-300 disabled:text-slate-700 border rounded-md p-1" type="submit" disabled={pending}>Entrar</button>
+        <SubmitButton className="static bottom-0 right-0">Entrar</SubmitButton>
       </div>
     </Form>
     <div className="font-semibold place-content-center">

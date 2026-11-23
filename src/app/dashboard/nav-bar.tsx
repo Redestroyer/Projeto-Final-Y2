@@ -1,8 +1,9 @@
 "use client";
 
-import type { JSX } from "react/jsx-runtime";
 import type { ComponentPropsWithoutRef } from "react";
-import Link from "next/link";
+import type { JSX } from "react/jsx-runtime";
+import type { Route } from "next";
+import Link, { type LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 import { unauthenticate, type UserRole } from "@/actions/auth";
 import { useUser } from "@/app/dashboard/dashboard-wrapper";
@@ -33,7 +34,7 @@ export default function NavBar(): JSX.Element {
   return (
     <nav>
       <UserHeader />
-      {links.map((link, i) => (<NavLink href={`/dashboard/${link.url}`} key={link.name}>{link.name}</NavLink>))}
+      {links.map((link, i) => (<NavLink href={`/dashboard/${link.url}` as Route} key={link.name}>{link.name}</NavLink>))}
     </nav>
   )
 }
@@ -53,7 +54,7 @@ function UserHeader(): JSX.Element {
   );
 }
 
-function NavLink({ className, ...props }: ComponentPropsWithoutRef<typeof Link>): JSX.Element {
+function NavLink<RouteType>({ className, ...props }: LinkProps<RouteType>): JSX.Element {
   const currentUrl = usePathname();
   if (currentUrl == props.href)
     return (

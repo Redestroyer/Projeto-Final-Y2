@@ -1,20 +1,30 @@
 "use client";
 
-import { DateField, EmailField, Label, PasswordField, Select, TelephoneField, TextField } from "@/components/form-fields";
+import { DateField, EmailField, Label, PasswordField, Select, SubmitButton, TelephoneField, TextField } from "@/components/form-fields";
 import { useRef } from "react";
+import Link from "next/link";
+import Form from "next/form";
 
+import { register } from "@/actions/auth";
 import { CPFPattern } from "..";
 import { useValidationReducer } from "./validation-reducer";
-import Link from "next/link";
 
 
 export default function SignupPage({}: PageProps<"/signup">) {
   const formRef = useRef<HTMLFormElement>(undefined!);
   const [validation, check] = useValidationReducer(formRef);
 
+  async function formAction(data: FormData) {
+    const result = await register(data);
+    if (result.status == "failure") {
+      alert(`Erro ao cadastrar: ${result.error}`);
+      return;
+    }
+  }
+
   return (
     <div className="justify-content-center pt-32">
-      <form className="grid grid-cols-3 gap-4" ref={formRef}>
+      <Form action={_=>{}} className="grid grid-cols-3 gap-4" ref={formRef}>
         <Label htmlFor="nome" className="col-span-2">Nome: <TextField required setValue={value => check({ field: "nome", value })} /></Label>
         <Label htmlFor="cpf">CPF: <TextField required pattern={CPFPattern} placeholder="123.456.789-10" setValue={value => check({ field: "cpf", value })} /></Label>
         <Label htmlFor="email" className="col-span-2">E-mail: <EmailField required setValue={value => check({ field: "email", value })} /></Label>
@@ -27,8 +37,8 @@ export default function SignupPage({}: PageProps<"/signup">) {
         </Select></Label>
         <Label htmlFor="senha">Senha: <PasswordField required setValue={value => check({ field: "senha" , value })} /></Label>
         <Label htmlFor="repass">Confirmar Senha: <PasswordField required setValue={value => check({ field: "repass" , value })} /></Label>
-        <button type="submit" disabled={!validation.valid}>Cadastrar</button>
-      </form>
+        <SubmitButton disabled={!validation.valid}>Cadastrar</SubmitButton>
+      </Form>
       <p>Já cadastrado? <Link href="/login">Autentica-te!</Link></p>
     </div>
   )

@@ -1,8 +1,10 @@
 "use client";
 
 import type { GlobalAttributes } from "@/components";
+import { cls } from "@/lib/css";
 import { formatYMD } from "@/lib/datetime";
 import { createContext, useContext, useState, type ChangeEventHandler, type ComponentPropsWithRef, type Ref, type RefObject } from "react";
+import { useFormStatus } from "react-dom";
 import type { JSX } from "react/jsx-runtime";
 
 export type LabelProps = ComponentPropsWithRef<"label">;
@@ -16,16 +18,20 @@ export function Label({ children, ...props }: LabelProps): JSX.Element {
   );
 }
 
-export type DispatchInvalid = ((invalid: boolean) => void) | (() => boolean);
+//export type DispatchInvalid = ((invalid: boolean) => void) | (() => boolean);
+export interface DispatchInvalid {
+  (): boolean;
+  (invalid: boolean): void;
+}
 export const InvalidationContext = createContext<DispatchInvalid | undefined>(undefined);
 export type InvalidationWrapperProps = ComponentPropsWithRef<"div">;
 export function InvalidationWrapper(props: InvalidationWrapperProps): JSX.Element {
   const [invalid, setInvalid] = useState(false);
   return (
-    <InvalidationContext value={(value?: boolean) => {
+    <InvalidationContext value={((value?: boolean) => {
       if (value != null) setInvalid(value);
       else return invalid;
-    }}>
+    }) as DispatchInvalid}>
       <div {...props} />
     </InvalidationContext>
   )
@@ -33,7 +39,7 @@ export function InvalidationWrapper(props: InvalidationWrapperProps): JSX.Elemen
 
 export type InvalidNoticeProps = ComponentPropsWithRef<"div">;
 export function InvalidNotice({ hidden, ...props }: InvalidNoticeProps): JSX.Element {
-  const invalid: boolean | undefined = (useContext(InvalidationContext) as any)?.();
+  const invalid: boolean | undefined = useContext(InvalidationContext)?.();
   return <div hidden={!invalid || hidden} {...props}/>
 }
 
@@ -132,4 +138,15 @@ export function Select({ name, children, defaultValue, value, setValue, onChange
     onChangeV(e);
   }
   return <select name={name} onChange={onChange} {...valueProps} {...props}>{children}</select>
+}
+
+type SubmitButtonProps = Omit<ComponentPropsWithRef<"button">, "type">;
+export function SubmitButton({ className, disabled, ...props }: SubmitButtonProps): JSX.Element {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      className={cls`bg-green-400 text-white disabled:bg-slate-300 disabled:text-slate-700 border rounded-md p-1 ${className}`}
+      type="submit" disabled={pending || disabled} {...props}
+    />
+  )
 }
