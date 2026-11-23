@@ -21,7 +21,7 @@ Projeto Final do segundo ano no Curso Técnico Integrado ao Médio de Desenvolvi
 ![Diagrama logico](/banco/Diagrama.Logico.png)
 
 ## Diagrama de Classe
-![Diagrama de Classe](/banco/diagrama.de.classe.png)
+![Diagrama de Classe](/banco/digrama.de.classes.png)
 
 [@DafnyLins06]: https://github.com/DafnyLins06
 [`dafny.md`]: /diario/dafny.md
