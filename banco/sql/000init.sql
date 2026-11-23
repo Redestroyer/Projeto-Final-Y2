@@ -1,6 +1,10 @@
-CREATE DATABASE GestaoAcademia;
-
-USE GestaoAcademia;
+-- CREATE DATABASE GestaoAcademia;
+--
+-- USE GestaoAcademia;
+-- ===============================
+-- Não usemos as instruções de criação de banco; apenas de tabelas.
+-- Ao usarmos no código, já teremos o banco criado e ligado.
+-- Ao usarmos no *workbench*, criemos e liguemos o banco a parte.
 
 CREATE TABLE Usuario (
     CPF VARCHAR(14) PRIMARY KEY,
@@ -66,4 +70,44 @@ CREATE TABLE FichaTreino (
     cpf_aluno VARCHAR(14) NOT NULL,     
 	FOREIGN KEY (CPF_Professor) REFERENCES Professor(CPF),
 	FOREIGN KEY (CPF_Aluno) REFERENCES Aluno(CPF)
+);
+
+create table Exercicio (
+    id int auto_increment primary key,
+    nome varchar(100) not null,
+    grupoMuscular varchar(50) not null,
+    equipamento varchar(100),
+    nivel varchar(30),
+    descricaoExecucao text,
+    ativo boolean not null default true
+);
+
+create table FichaExercicio (
+    id_ficha int not null,
+    id_exercicio int not null,
+    series int not null,
+    repeticoes varchar(30) not null,
+    cargaKg decimal(6,2),
+    primary key(id_ficha, id_exercicio),
+    foreign key (id_ficha) references FichaTreino(id),
+    foreign key (id_exercicio) references Exercicio(id),
+);
+
+create table TreinoRealizado (
+    id int auto_increment primary key,
+    data date not null,
+    completo boolean not null default false,
+    id_ficha int not null,
+    foreign key (id_ficha) references FichaTreino(id)
+);
+
+create table RegistroExercicio (
+    id_treinoRealizado int not null,
+    id_exercicio int not null,
+    series int not null,
+    repeticoes varchar(30) not null,
+    cargaUsadaKg decimal(6,2),
+    primary key(id_treinoRealizado, id_exercicio),
+    foreign key (id_treinoRealizado) references TreinoRealizado(id),
+    foreign key (id_exercicio) references Exercicio(id),
 );

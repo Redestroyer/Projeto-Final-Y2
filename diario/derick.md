@@ -21,4 +21,9 @@ Iniciei o layout de `/dashboard`, incluindo um esqueleto para navegação.
 # 2026-11-19
 Iniciei a estilização das telas de autenticação.
 
+# 2026-11-23
+Fiz minha parte do [`000init.sql`][].
+
 [diagrama conceitual]: /banco/Diagrama.Conceitual.brM3
+
+[`000init.sql`]: /banco/sql/000init.sql
