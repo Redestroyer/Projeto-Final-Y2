@@ -34,3 +34,36 @@ CREATE TABLE Plano (
     Cobranca VARCHAR(50),
     Ativo BOOLEAN DEFAULT TRUE
 );
+
+CREATE TABLE Aluno (
+   CPF VARCHAR(14) PRIMARY KEY,
+    Ativo BOOLEAN DEFAULT TRUE,
+    CPFProfessor VARCHAR(14), 
+    idPlano INT NOT NULL,     
+	FOREIGN KEY (CPF) REFERENCES Usuario(CPF),
+	FOREIGN KEY (CPFProfessor) REFERENCES Professor(CPF),
+    FOREIGN KEY (idPlano) REFERENCES Plano(id)
+);
+
+CREATE TABLE Mensalidade (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Vencimento DATE NOT NULL,
+    Valor DECIMAL(10, 2) NOT NULL,
+    Situacao VARCHAR(30) NOT NULL,
+    dataPagamento DATE,
+    CPFAluno VARCHAR(14) NOT NULL, 
+    idPlano INT NOT NULL,         
+    FOREIGN KEY (CPF_aluno) REFERENCES Aluno(CPF),
+    FOREIGN KEY (id_plano) REFERENCES Plano(id)
+);
+
+CREATE TABLE FichaTreino (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Inicio DATE NOT NULL,
+    validade DATE NOT NULL,
+    ativa BOOLEAN DEFAULT TRUE,
+    cpf_professor VARCHAR(14) NOT NULL, 
+    cpf_aluno VARCHAR(14) NOT NULL,     
+	FOREIGN KEY (CPF_Professor) REFERENCES Professor(CPF),
+	FOREIGN KEY (CPF_Aluno) REFERENCES Aluno(CPF)
+);
