@@ -1,9 +1,9 @@
 "use client";
 
-import type { GlobalAttributes } from "@/components";
+import { useStateDispatch, type GlobalAttributes, type StateDispatch } from "@/components";
 import { cls } from "@/lib/css";
 import { formatYMD } from "@/lib/datetime";
-import { createContext, useContext, useState, type ChangeEventHandler, type ComponentPropsWithRef, type Ref, type RefObject } from "react";
+import { createContext, useContext, type ChangeEventHandler, type ComponentPropsWithRef, type Ref, type RefObject } from "react";
 import { useFormStatus } from "react-dom";
 import type { JSX } from "react/jsx-runtime";
 
@@ -18,7 +18,6 @@ export function Label({ children, ...props }: LabelProps): JSX.Element {
   );
 }
 
-//export type DispatchInvalid = ((invalid: boolean) => void) | (() => boolean);
 export interface DispatchInvalid {
   (): boolean;
   (invalid: boolean): void;
@@ -26,12 +25,9 @@ export interface DispatchInvalid {
 export const InvalidationContext = createContext<DispatchInvalid | undefined>(undefined);
 export type InvalidationWrapperProps = ComponentPropsWithRef<"div">;
 export function InvalidationWrapper(props: InvalidationWrapperProps): JSX.Element {
-  const [invalid, setInvalid] = useState(false);
+  const invalid = useStateDispatch(false) satisfies StateDispatch<boolean>;
   return (
-    <InvalidationContext value={((value?: boolean) => {
-      if (value != null) setInvalid(value);
-      else return invalid;
-    }) as DispatchInvalid}>
+    <InvalidationContext value={invalid}>
       <div {...props} />
     </InvalidationContext>
   )

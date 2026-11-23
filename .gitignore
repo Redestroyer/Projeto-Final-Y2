@@ -1,4 +1,7 @@
 # deps
 node_modules/
+
+# build
 .next/
 next-env.d.ts
+tsconfig.tsbuildinfo
