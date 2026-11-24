@@ -5,6 +5,7 @@ declare global {
       DATABASE_PASS?: string;
       DATABASE_HOST?: string;
       DATABASE_PORT?: string;
+      SECRET: string;
     }
   }
 }

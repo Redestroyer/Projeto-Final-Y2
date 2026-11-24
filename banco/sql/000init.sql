@@ -12,7 +12,7 @@ CREATE TABLE Usuario (
   dataNasc DATE NOT NULL,
   sexo CHAR(1),
   email VARCHAR(100) UNIQUE NOT NULL,
-  senha VARCHAR(8) NOT NULL,
+  senha VARCHAR(255) NOT NULL,
   telefone VARCHAR(11)
 );
 
@@ -78,8 +78,7 @@ create table Exercicio (
   grupoMuscular varchar(50) not null,
   equipamento varchar(100),
   nivel varchar(30),
-  descricaoExecucao text,
-  ativo bit(1) not null default b'1'
+  descricaoExecucao text
 );
 
 create table FichaExercicio (
@@ -112,6 +111,14 @@ create table RegistroExercicio (
   foreign key (idExercicio) references Exercicio(id),
 );
 
-create view UsuarioAluno as select usr.cpf cpf, usr.nome nome, usr.dataNasc dataNasc, usr.sexo sexo, usr.email email, usr.senha senha, usr.telefone telefone, aln.ativo ativo, aln.cpfProfessor cpfProfessor, aln.idPlano idPlano from Aluno aln join Usuario usr on aln.cpf = usr.cpf;
-create view UsuarioProfessor as select usr.cpf cpf, usr.nome nome, usr.dataNasc dataNasc, usr.sexo sexo, usr.email email, usr.senha senha, usr.telefone telefone, prf.cref cref, prf.especialidade especialidade, prf.ativo ativo from Professor prf join Usuario usr on prf.cpf = usr.cpf;
-create view UsuarioAdministrador as select usr.cpf cpf, usr.nome nome, usr.dataNasc dataNasc, usr.sexo sexo, usr.email email, usr.senha senha, usr.telefone telefone from Administrador adm join Usuario usr on adm.cpf = usr.cpf;
+create view UsuarioAluno as
+  select usr.cpf cpf, usr.nome nome, usr.dataNasc dataNasc, usr.sexo sexo, usr.email email, usr.senha senha, usr.telefone telefone, aln.ativo ativo, aln.cpfProfessor cpfProfessor, aln.idPlano idPlano from Aluno aln join Usuario usr on aln.cpf = usr.cpf;
+create view UsuarioProfessor as
+  select usr.cpf cpf, usr.nome nome, usr.dataNasc dataNasc, usr.sexo sexo, usr.email email, usr.senha senha, usr.telefone telefone, prf.cref cref, prf.especialidade especialidade, prf.ativo ativo from Professor prf join Usuario usr on prf.cpf = usr.cpf;
+create view UsuarioAdministrador as
+  select usr.cpf cpf, usr.nome nome, usr.dataNasc dataNasc, usr.sexo sexo, usr.email email, usr.senha senha, usr.telefone telefone from Administrador adm join Usuario usr on adm.cpf = usr.cpf;
+
+insert into Exercicio (nome, grupoMuscular, equipamento, nivel, descricaoExecucao) values
+  ("Cardio", "Pernas", "Esteira", null, "Corrida de rítmo ajustável e controlável sobre esteira.")
+, ("Supino Reto", "Peitoral;Ombros", "Banco;Barra com pesos", "Difícil", "Levantamento de peso por meio de flexão horizontal, suportado por um banco.")
+;
