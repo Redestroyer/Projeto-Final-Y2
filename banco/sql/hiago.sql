@@ -2,37 +2,37 @@
 INSERT INTO Aluno
 (CPF, Ativo, CPFProfessor, idPlano)
 VALUES
-('12345678901', TRUE, '000.000.000-02', 1),
-('00000000005', TRUE, '000.000.000-03', 2),
-('00000000006', TRUE, '000.000.000-02', 3),
-('00000000007', TRUE, '000.000.000-03', 1),
-('00000000008', FALSE, '000.000.000-02', 2);
+('12345678901', b'1', '00000000002', 1),
+('00000000005', b'1', '00000000003', 2),
+('00000000006', b'1', '00000000002', 3),
+('00000000007', b'1', '00000000003', 1),
+('00000000008', b'0', '00000000002', 2);
 
 
 INSERT INTO Mensalidade
 (Vencimento, Valor, Situacao, dataPagamento, CPFAluno, idPlano)
 VALUES
-('2026-11-10', 79.90, 'Paga', '2026-11-09', '000.000.000-04', 1),
-('2026-11-25', 109.90, 'Pendente', NULL, '000.000.000-05', 2),
-('2026-11-15', 149.90, 'Paga', '2026-11-14', '000.000.000-06', 3),
-('2026-11-20', 79.90, 'Pendente', NULL, '000.000.000-07', 1),
-('2026-11-01', 109.90, 'Atrasada', NULL, '000.000.000-08', 2);
+('2026-11-10', 79.90, 'Paga', '2026-11-09', '00000000004', 1),
+('2026-11-25', 109.90, 'Pendente', NULL, '00000000005', 2),
+('2026-11-15', 149.90, 'Paga', '2026-11-14', '00000000006', 3),
+('2026-11-20', 79.90, 'Pendente', NULL, '00000000007', 1),
+('2026-11-01', 109.90, 'Atrasada', NULL, '00000000008', 2);
 
 
 INSERT INTO FichaTreino
 (Inicio, validade, ativa, CPFProfessor, CPFAluno)
 VALUES
-('2026-11-01', '2026-12-01', TRUE, '000.000.000-02', '000.000.000-04'),
-('2026-11-05', '2026-12-05', TRUE, '000.000.000-03', '000.000.000-05'),
-('2026-10-01', '2026-11-01', FALSE, '000.000.000-02', '000.000.000-06'),
-('2026-11-10', '2026-12-10', TRUE, '000.000.000-03', '000.000.000-07');
+('2026-11-01', '2026-12-01', b'1', '00000000002', '00000000004'),
+('2026-11-05', '2026-12-05', b'1', '00000000003', '00000000005'),
+('2026-10-01', '2026-11-01', b'0', '00000000002', '00000000006'),
+('2026-11-10', '2026-12-10', b'1', '00000000003', '00000000007');
 
 
 -- CADASTRAR
 INSERT INTO Aluno
 (CPF, Ativo, CPFProfessor, idPlano)
 VALUES
-('000.000.000-09', TRUE, '000.000.000-02', 1);
+('00000000009', b'1', '00000000002', 1);
 
 -- LISTAR
 SELECT * FROM Aluno;
@@ -54,26 +54,26 @@ INNER JOIN Plano PL ON A.idPlano = PL.id;
 -- BUSCAR
 SELECT *
 FROM Aluno
-WHERE CPF = '000.000.000-04';
+WHERE CPF = '00000000004';
 
 -- EDITAR
 UPDATE Aluno
-SET Ativo = TRUE,
-    CPFProfessor = '000.000.000-03',
+SET Ativo = b'1',
+    CPFProfessor = '00000000003',
     idPlano = 2
-WHERE CPF = '000.000.000-04';
+WHERE CPF = '00000000004';
 
 -- DESATIVAR
 UPDATE Aluno
-SET Ativo = FALSE
-WHERE CPF = '000.000.000-04';
+SET Ativo = b'0'
+WHERE CPF = '00000000004';
 
 
 -- CADASTRAR
 INSERT INTO Mensalidade
 (Vencimento, Valor, Situacao, dataPagamento, CPFAluno, idPlano)
 VALUES
-('2026-12-25', 79.90, 'Pendente', NULL, '000.000.000-04', 1);
+('2026-12-25', 79.90, 'Pendente', NULL, '00000000004', 1);
 
 -- LISTAR
 SELECT * FROM Mensalidade;
@@ -119,8 +119,8 @@ WHERE id = 1;
 INSERT INTO FichaTreino
 (Inicio, validade, ativa, CPFProfessor, CPFAluno)
 VALUES
-('2026-12-01', '2027-01-01', TRUE,
- '000.000.000-02', '000.000.000-04');
+('2026-12-01', '2027-01-01', b'1',
+ '00000000002', '00000000004');
 
 -- LISTAR
 SELECT * FROM FichaTreino;
@@ -148,12 +148,12 @@ WHERE id = 1;
 UPDATE FichaTreino
 SET Inicio = '2026-12-01',
     validade = '2027-01-15',
-    CPFProfessor = '000.000.000-03'
+    CPFProfessor = '00000000003'
 WHERE id = 1;
 
 -- DESATIVAR
 UPDATE FichaTreino
-SET ativa = FALSE
+SET ativa = b'0'
 WHERE id = 1;
 
 -- EXCLUIR
@@ -168,12 +168,12 @@ FROM Aluno;
 -- ALUNOS ATIVOS
 SELECT COUNT(*) AS AlunosAtivos
 FROM Aluno
-WHERE Ativo = TRUE;
+WHERE Ativo = b'1';
 
 -- ALUNOS INATIVOS
 SELECT COUNT(*) AS AlunosInativos
 FROM Aluno
-WHERE Ativo = FALSE;
+WHERE Ativo = b'0';
 
 -- MENSALIDADES PAGAS
 SELECT *
@@ -199,7 +199,7 @@ WHERE Situacao = 'Paga';
 -- FICHAS ATIVAS
 SELECT *
 FROM FichaTreino
-WHERE ativa = TRUE
+WHERE ativa = b'1'
 AND validade >= CURDATE();
 
 -- ALUNOS POR PROFESSOR
@@ -214,7 +214,7 @@ GROUP BY P.CPF, U.Nome;
 -- HISTORICO DE MENSALIDADES
 SELECT *
 FROM Mensalidade
-WHERE CPFAluno = '000.000.000-04'
+WHERE CPFAluno = '00000000004'
 ORDER BY Vencimento DESC;
 
 -- ALUNOS E PLANOS
@@ -238,13 +238,13 @@ GROUP BY Situacao;
 -- VERIFICAR SE ALUNO EXISTE E ESTA ATIVO
 SELECT CPF
 FROM Aluno
-WHERE CPF = '000.000.000-04'
-AND Ativo = TRUE;
+WHERE CPF = '00000000004'
+AND Ativo = b'1';
 
 -- VERIFICAR SE PROFESSOR EXISTE
 SELECT CPF
 FROM Professor
-WHERE CPF = '000.000.000-02';
+WHERE CPF = '00000000002';
 
 -- VERIFICAR SE PLANO EXISTE
 SELECT id, Nome, Valor
@@ -254,8 +254,8 @@ WHERE id = 1;
 -- VERIFICAR FICHA ATIVA DO ALUNO
 SELECT *
 FROM FichaTreino
-WHERE CPFAluno = '000.000.000-04'
-AND ativa = TRUE
+WHERE CPFAluno = '00000000004'
+AND ativa = b'1'
 AND validade >= CURDATE();
 
 -- ATUALIZAR MENSALIDADES ATRASADAS
@@ -266,7 +266,7 @@ AND Vencimento < CURDATE();
 
 -- DESATIVAR FICHAS VENCIDAS
 UPDATE FichaTreino
-SET ativa = FALSE
+SET ativa = b'0'
 WHERE validade < CURDATE();
 
 
