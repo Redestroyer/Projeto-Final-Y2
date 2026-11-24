@@ -89,7 +89,7 @@ create table FichaExercicio (
   cargaKg decimal(6,2),
   primary key(idFicha, idExercicio),
   foreign key (idFicha) references FichaTreino(id),
-  foreign key (idExercicio) references Exercicio(id),
+  foreign key (idExercicio) references Exercicio(id)
 );
 
 create table TreinoRealizado (
@@ -108,7 +108,7 @@ create table RegistroExercicio (
   cargaUsadaKg decimal(6,2),
   primary key(idTreinoRealizado, idExercicio),
   foreign key (idTreinoRealizado) references TreinoRealizado(id),
-  foreign key (idExercicio) references Exercicio(id),
+  foreign key (idExercicio) references Exercicio(id)
 );
 
 create view UsuarioAluno as

@@ -6,6 +6,7 @@ declare global {
       DATABASE_HOST?: string;
       DATABASE_PORT?: string;
       SECRET: string;
+      A256KW_KEY: string;
     }
   }
 }
