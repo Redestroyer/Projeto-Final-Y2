@@ -8,3 +8,6 @@ fiz melhorias no diagrama conceitual de acordo com o que o professora de banco d
 
 # 2026-11-23
 continuei o sql e crie as tabelas Aluno, Mensalidade e FichaTreino.
+
+# 2026-11-24
+melhorias do diagrama de classes, entrega 3!
