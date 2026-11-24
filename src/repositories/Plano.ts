@@ -1,6 +1,5 @@
 import { PlanoDB, type PlanoBlank } from "@/models";
 import type { SQL } from "bun";
-import type { QueryResult } from ".";
 
 type PlanoRow = {
   id: number;
@@ -31,7 +30,7 @@ export class PlanoRepository {
   }
 
   public async consultarPorID(id: PlanoDB["id"]): Promise<PlanoDB | null> {
-    const query = await this.sql<QueryResult<[PlanoRow] | []>>`select ${this.camposFragment} from ${this.tabelaFragment} where id = ${id} limit 1;`;
+    const query = await this.sql<[PlanoRow] | []>`select ${this.camposFragment} from ${this.tabelaFragment} where id = ${id} limit 1;`;
     if (query.length == 0)
       return null;
     return await this.fromRow(query[0]);
@@ -40,7 +39,7 @@ export class PlanoRepository {
     limite ??= 128;
     deslocamento ??= 0;
 
-    const query = await this.sql<QueryResult<PlanoRow[]>>`select ${this.camposFragment} from ${this.tabelaFragment} limit ${limite} offset ${deslocamento};`;
+    const query = await this.sql<PlanoRow[]>`select ${this.camposFragment} from ${this.tabelaFragment} limit ${limite} offset ${deslocamento};`;
     return await this.fromRows(query);
   }
 

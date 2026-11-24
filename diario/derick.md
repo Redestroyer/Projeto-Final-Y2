@@ -22,8 +22,12 @@ Iniciei o layout de `/dashboard`, incluindo um esqueleto para navegação.
 Iniciei a estilização das telas de autenticação.
 
 # 2026-11-23
-Fiz minha parte do [`000init.sql`][] e melhorei as telas de autenticação.
+Fiz minha parte do [`000init.sql`][], melhorei as telas de autenticação e iniciei as classes de modelo e repositório.
+
+# 2026-11-24
+Criei [`.env`][], iniciei classes de serviço e adicionei mais classes de modelo e repositório.
 
 [diagrama conceitual]: /banco/Diagrama.Conceitual.brM3
 
 [`000init.sql`]: /banco/sql/000init.sql
+[`.env`]: /.env.example

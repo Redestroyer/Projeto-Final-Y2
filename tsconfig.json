@@ -32,7 +32,9 @@
       "@/components": ["./src/components"],
       "@/components/*": ["./src/components/*"],
       "@/lib/*": ["./src/lib/*"],
-      "@/models": ["./src/models"]
+      "@/models": ["./src/models"],
+      "@/repositories": ["./src/repositories"],
+      "@/services": ["./src/services"],
     }
   },
   "include": [

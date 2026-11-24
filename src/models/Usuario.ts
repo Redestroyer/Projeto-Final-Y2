@@ -1,6 +1,6 @@
 import type { PlanoBase, PlanoDB } from "./Plano";
 
-export interface UsuárioBase {
+export interface UsuarioBase {
   cpf: string;
   name: string;
   email: string;
@@ -9,28 +9,28 @@ export interface UsuárioBase {
   sexo: "n" | "f" | "m";
   senha: string;
 }
-export interface AdministradorBase extends UsuárioBase {}
-export interface ProfessorBase extends UsuárioBase {
+export interface AdministradorBase extends UsuarioBase {}
+export interface ProfessorBase extends UsuarioBase {
   cref: string;
-  especialidade: string;
+  especialidade?: string;
   ativo: boolean;
 }
-export interface AlunoBase extends UsuárioBase {
+export interface AlunoBase extends UsuarioBase {
   cpfProfessor: ProfessorBase["cpf"];
   idPlano: PlanoBase["id"];
   ativo: boolean;
 }
 
-export class UsuárioBlank {
-  cpf: UsuárioBase["cpf"];
-  name: UsuárioBase["name"];
-  email: UsuárioBase["email"];
-  telefone: UsuárioBase["telefone"];
-  dataNasc: UsuárioBase["dataNasc"];
-  sexo: UsuárioBase["sexo"];
-  senha: UsuárioBase["senha"];
+export abstract class UsuarioBlank {
+  cpf: UsuarioBase["cpf"];
+  name: UsuarioBase["name"];
+  email: UsuarioBase["email"];
+  telefone: UsuarioBase["telefone"];
+  dataNasc: UsuarioBase["dataNasc"];
+  sexo: UsuarioBase["sexo"];
+  senha: UsuarioBase["senha"];
   
-  constructor({ cpf, name, email, telefone, dataNasc, sexo, senha }: UsuárioBase) {
+  constructor({ cpf, name, email, telefone, dataNasc, sexo, senha }: UsuarioBase) {
     this.cpf = cpf;
     this.name = name;
     this.email = email;
@@ -40,17 +40,18 @@ export class UsuárioBlank {
     this.senha = senha;
   }
 }
+export class AdministradorBlank extends UsuarioBlank {}
 
-export class UsuárioDB {
-  readonly cpf: UsuárioBase["cpf"];
-  name: UsuárioBase["name"];
-  email: UsuárioBase["email"];
-  telefone: UsuárioBase["telefone"];
-  dataNasc: UsuárioBase["dataNasc"];
-  sexo: UsuárioBase["sexo"];
-  senha: UsuárioBase["senha"];
+export class UsuarioDB {
+  readonly cpf: UsuarioBase["cpf"];
+  name: UsuarioBase["name"];
+  email: UsuarioBase["email"];
+  telefone: UsuarioBase["telefone"];
+  dataNasc: UsuarioBase["dataNasc"];
+  sexo: UsuarioBase["sexo"];
+  senha: UsuarioBase["senha"];
   
-  constructor({ cpf, name, email, telefone, dataNasc, sexo, senha }: UsuárioBase) {
+  constructor({ cpf, name, email, telefone, dataNasc, sexo, senha }: UsuarioBase) {
     this.cpf = cpf;
     this.name = name;
     this.email = email;
@@ -60,14 +61,14 @@ export class UsuárioDB {
     this.senha = senha;
   }
 }
-export class AdministradorDB extends UsuárioDB {
+export class AdministradorDB extends UsuarioDB {
   constructor({ ...user }: AdministradorBase) {
     super(user);
   }
 }
-export class ProfessorDB extends UsuárioDB {
+export class ProfessorDB extends UsuarioDB {
   cref: string;
-  especialidade: string;
+  especialidade?: string;
   ativo: boolean;
   
   constructor({ cref, especialidade, ativo, ...user }: ProfessorBase) {
@@ -77,7 +78,7 @@ export class ProfessorDB extends UsuárioDB {
     this.ativo = ativo;
   }
 }
-export class AlunoDB extends UsuárioDB {
+export class AlunoDB extends UsuarioDB {
   cpfProfessor: ProfessorDB["cpf"];
   idPlano: PlanoDB["id"];
   ativo: boolean;
