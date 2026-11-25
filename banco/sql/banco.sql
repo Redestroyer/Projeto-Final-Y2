@@ -51,9 +51,9 @@ FOREIGN KEY (cpfProfessor) REFERENCES Professor(cpf),
 
 CREATE TABLE Mensalidade (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  Vencimento DATE NOT NULL,
-  Valor DECIMAL(10, 2) NOT NULL,
-  Situacao VARCHAR(30) NOT NULL,
+  vencimento DATE NOT NULL,
+  valor DECIMAL(10, 2) NOT NULL,
+  situacao VARCHAR(30) NOT NULL,
   dataPagamento DATE,
   cpfAluno VARCHAR(14) NOT NULL, 
   idPlano INT NOT NULL,         
@@ -63,13 +63,13 @@ CREATE TABLE Mensalidade (
 
 CREATE TABLE FichaTreino (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  Inicio DATE NOT NULL,
+  inicio DATE NOT NULL,
   validade DATE NOT NULL,
   ativa BIT(1) NOT NULL DEFAULT b'1',
   cpfProfessor VARCHAR(14) NOT NULL, 
   cpfAluno VARCHAR(14) NOT NULL,     
-FOREIGN KEY (cpfProfessor) REFERENCES Professor(cpf),
-FOREIGN KEY (cpfAluno) REFERENCES Aluno(cpf)
+  FOREIGN KEY (cpfProfessor) REFERENCES Professor(cpf),
+  FOREIGN KEY (cpfAluno) REFERENCES Aluno(cpf)
 );
 
 create table Exercicio (

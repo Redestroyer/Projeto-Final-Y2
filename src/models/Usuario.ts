@@ -2,7 +2,7 @@ import type { PlanoBase, PlanoDB } from "./Plano";
 
 export interface UsuarioBase {
   cpf: string;
-  name: string;
+  nome: string;
   email: string;
   telefone: string;
   dataNasc: Date;
@@ -23,16 +23,16 @@ export interface AlunoBase extends UsuarioBase {
 
 export abstract class UsuarioBlank {
   cpf: UsuarioBase["cpf"];
-  name: UsuarioBase["name"];
+  nome: UsuarioBase["nome"];
   email: UsuarioBase["email"];
   telefone: UsuarioBase["telefone"];
   dataNasc: UsuarioBase["dataNasc"];
   sexo: UsuarioBase["sexo"];
   senha: UsuarioBase["senha"];
   
-  constructor({ cpf, name, email, telefone, dataNasc, sexo, senha }: UsuarioBase) {
+  constructor({ cpf, nome, email, telefone, dataNasc, sexo, senha }: UsuarioBase) {
     this.cpf = cpf;
-    this.name = name;
+    this.nome = nome;
     this.email = email;
     this.telefone = telefone;
     this.dataNasc = dataNasc;
@@ -41,30 +41,58 @@ export abstract class UsuarioBlank {
   }
 }
 export class AdministradorBlank extends UsuarioBlank {}
+export class ProfessorBlank extends UsuarioBlank {
+  cref: ProfessorBase["cref"];
+  especialidade: ProfessorBase["especialidade"];
+  ativo: ProfessorBase["ativo"];
+  
+  constructor({ cref, especialidade, ativo, ...user }: ProfessorBase) {
+    super(user);
+    this.cref = cref;
+    this.especialidade = especialidade;
+    this.ativo = ativo;
+  }
+}
+export class AlunoBlank extends UsuarioBlank {
+  cpfProfessor: AlunoBase["cpfProfessor"];
+  idPlano: AlunoBase["idPlano"];
+  ativo: AlunoBase["ativo"];
+
+  constructor({ cpfProfessor, idPlano, ativo, ...user }: AlunoBase) {
+    super(user);
+    this.cpfProfessor = cpfProfessor;
+    this.idPlano = idPlano;
+    this.ativo = ativo;
+  }
+}
 
 export class UsuarioDB {
   readonly cpf: UsuarioBase["cpf"];
-  name: UsuarioBase["name"];
+  nome: UsuarioBase["nome"];
   email: UsuarioBase["email"];
   telefone: UsuarioBase["telefone"];
   dataNasc: UsuarioBase["dataNasc"];
   sexo: UsuarioBase["sexo"];
   senha: UsuarioBase["senha"];
   
-  constructor({ cpf, name, email, telefone, dataNasc, sexo, senha }: UsuarioBase) {
+  constructor({ cpf, nome, email, telefone, dataNasc, sexo, senha }: UsuarioBase) {
     this.cpf = cpf;
-    this.name = name;
+    this.nome = nome;
     this.email = email;
     this.telefone = telefone;
     this.dataNasc = dataNasc;
     this.sexo = sexo;
     this.senha = senha;
   }
+
+  get role(): string { return "USR"; }
 }
 export class AdministradorDB extends UsuarioDB {
   constructor({ ...user }: AdministradorBase) {
     super(user);
   }
+
+  get role() { return "ADM"; }
 }
 export class ProfessorDB extends UsuarioDB {
   cref: string;
@@ -77,6 +105,8 @@ export class ProfessorDB extends UsuarioDB {
     this.especialidade = especialidade;
     this.ativo = ativo;
   }
+
+  get role() { return "PRF"; }
 }
 export class AlunoDB extends UsuarioDB {
   cpfProfessor: ProfessorDB["cpf"];
@@ -89,4 +119,6 @@ export class AlunoDB extends UsuarioDB {
     this.idPlano = idPlano;
     this.ativo = ativo;
   }
+
+  get role() { return "ALN" }
 }

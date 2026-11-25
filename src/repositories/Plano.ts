@@ -29,21 +29,34 @@ export class PlanoRepository {
     return Promise.all(rows.map(this.fromRow));
   }
 
+  private async intoRegister(data: PlanoBlank) {
+    const { nome, valor, duracaoMeses, diaVencimento, cobranca, ativo } = data;
+    return { nome, valor, duracaoMeses, diaVencimento, cobranca, ativo };
+  }
+
   public async consultarPorID(id: PlanoDB["id"]): Promise<PlanoDB | null> {
     const query = await this.sql<[PlanoRow] | []>`select ${this.camposFragment} from ${this.tabelaFragment} where id = ${id} limit 1;`;
     if (query.length == 0)
       return null;
     return await this.fromRow(query[0]);
   }
-  public async listarTodos({ limite, deslocamento }: { limite?: number; deslocamento?: number }): Promise<PlanoDB[]> {
-    limite ??= 128;
-    deslocamento ??= 0;
+  public async listarTodos(q?: { limite?: number; deslocamento?: number }): Promise<PlanoDB[]> {
+    const limite = q?.limite ?? 128;
+    const deslocamento = q?.deslocamento ?? 0;
 
     const query = await this.sql<PlanoRow[]>`select ${this.camposFragment} from ${this.tabelaFragment} limit ${limite} offset ${deslocamento};`;
     return await this.fromRows(query);
   }
 
-  public cadastrar(...planos: PlanoBlank[]) {
-    throw new Error("TODO: Register plano.");
+  public async cadastrar(...dados: PlanoBlank[]): Promise<PlanoDB[]> {
+    const register = await Promise.all(dados.map(this.intoRegister));
+    const query = await this.sql<{}>`insert into ${this.tabelaFragment} ${this.sql(register)};`;
+    const deslocamento = query.lastInsertRowid as number;
+    return await this.listarTodos({ limite: register.length, deslocamento });
+  }
+
+  public async atualizar(plano: PlanoDB): Promise<boolean> {
+    const register = await this.intoRegister(plano);
+    return await this.sql`update ${this.tabelaFragment} set ${this.sql(register)} where id = ${plano.id}`.then(_=>true,_=>false);
   }
 }

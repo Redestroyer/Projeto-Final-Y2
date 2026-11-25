@@ -26,8 +26,8 @@ FROM Usuario u
 INNER JOIN Professor p
     ON u.cpf = p.cpf;
     
-    -- Adm que sao usuarios
-    SELECT
+-- Adm que sao usuarios
+SELECT
     u.cpf,
     u.nome,
     u.email
@@ -35,8 +35,8 @@ FROM Usuario u
 INNER JOIN Administrador ad
     ON u.cpf = ad.cpf;
     
-    -- Usuarios que sao adm e alunos 
-    SELECT
+-- Usuarios que sao adm e alunos 
+SELECT
     u.cpf,
     u.nome,
     u.email,

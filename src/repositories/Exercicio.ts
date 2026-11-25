@@ -50,4 +50,9 @@ export class ExercicioRepository {
     const deslocamento = query.lastInsertRowid as number;
     return await this.listarTodos({ limite: register.length, deslocamento });
   }
+
+  public async atualizar(exercicio: ExercicioDB): Promise<boolean> {
+    const register = await this.intoRegister(exercicio);
+    return await this.sql`update ${this.tabelaFragment} set ${this.sql(register)} where id = ${exercicio.id}`.then(_=>true,_=>false);
+  }
 }
