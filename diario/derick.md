@@ -30,6 +30,9 @@ Criei [`.env`][], iniciei classes de serviço e adicionei mais classes de modelo
 # 2026-11-25
 Continuei as classes de modelo, repositório e serviço e formatei o [`banco.sql`][] e [`relatorios.sql`][]
 
+# 2026-11-26
+Terminei o serviço de autenticação e continuei as [ações *React* de autenticação](/src/actions/auth.ts). 
+
 [diagrama conceitual]: /banco/Diagrama.Conceitual.brM3
 
 [`banco.sql`]: /banco/sql/banco.sql

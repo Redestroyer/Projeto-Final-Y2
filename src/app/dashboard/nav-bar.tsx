@@ -40,7 +40,7 @@ export default function NavBar(): JSX.Element {
 }
 
 function UserHeader(): JSX.Element {
-  const { name } = useUser();
+  const { nome: name } = useUser();
   async function logOut() {
     if (!confirm("Gostarias mesmo de desautenticar?")) return;
     await unauthenticate();

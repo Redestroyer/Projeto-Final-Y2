@@ -5,7 +5,7 @@ import { EncryptJWT, jwtDecrypt } from "jose";
 const secret = new TextEncoder().encode(process.env.SECRET);
 type Payload = {
   sub: UsuarioDB["cpf"];
-  name: UsuarioDB["nome"];
+  nome: UsuarioDB["nome"];
   email: UsuarioDB["email"];
 }
 
@@ -49,7 +49,7 @@ export class AutenticacaoService {
     if (auth)
       return null;
 
-    const token = await new EncryptJWT({ sub: usuario.cpf, email: usuario.email, name: usuario.nome } satisfies Payload)
+    const token = await new EncryptJWT({ sub: usuario.cpf, email: usuario.email, nome: usuario.nome } satisfies Payload)
       .setProtectedHeader({ alg: "A256KW", enc: process.env.SECRET })
       .setIssuedAt()
       .setExpirationTime("30min")
