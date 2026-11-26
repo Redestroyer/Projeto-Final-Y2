@@ -6,5 +6,8 @@ Criei o [Diagrama Lógico](/banco/Diagrama.Logico.png) diante do diagrama concei
 Editei o [Diagrama Lógico](/banco/Diagrama.Logico.png) diante das alterações pedidas pela professora e iniciei a criação do script sql. 
 
 # 2026-11-25
-
 Editei o [Banco](/Projeto-Final-Y2/banco/sql/banco.sql) adicionei os[Relatorios](/Projeto-Final-Y2/banco/sql/relatorios.sql).
+
+# 2026-11-25
+Criei a estrutura das [Classes](/Projeto-Final-Y2/src/Classes). Desenvolvi os códigos: [Código Aluno](/Projeto-Final-Y2/src/Classes/Aluno.ts), [Código Usuario](/Projeto-Final-Y2/src/Classes/Usuario.ts), 
+[Código Professor](/Projeto-Final-Y2/src/Classes/Professor.ts).
