@@ -74,13 +74,13 @@ export class UsuarioRepository {
     return new UsuarioDB(row);
   }
   private async fromRows(rows: UsuarioRow[]): Promise<UsuarioDB[]> {
-    return Promise.all(rows.map(this.fromRow));
+    return await Promise.all(rows.map(this.fromRow));
   }
   private async alunoFromRow(row: UsuarioAlunoRow): Promise<AlunoDB> {
     return new AlunoDB(row);
   }
   private async alunosFromRows(rows: UsuarioAlunoRow[]): Promise<AlunoDB[]> {
-    return Promise.all(rows.map(this.alunoFromRow));
+    return await Promise.all(rows.map(this.alunoFromRow));
   }
   private async professorFromRow(row: UsuarioProfessorRow): Promise<ProfessorDB> {
     return new ProfessorDB(row);

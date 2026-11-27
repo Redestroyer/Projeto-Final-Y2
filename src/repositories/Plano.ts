@@ -26,7 +26,7 @@ export class PlanoRepository {
     return new PlanoDB(row);
   }
   private async fromRows(rows: PlanoRow[]): Promise<PlanoDB[]> {
-    return Promise.all(rows.map(this.fromRow));
+    return await Promise.all(rows.map(this.fromRow));
   }
 
   private async intoRegister(data: PlanoBlank) {

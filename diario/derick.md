@@ -31,7 +31,10 @@ Criei [`.env`][], iniciei classes de serviço e adicionei mais classes de modelo
 Continuei as classes de modelo, repositório e serviço e formatei o [`banco.sql`][] e [`relatorios.sql`][]
 
 # 2026-11-26
-Terminei o serviço de autenticação e continuei as [ações *React* de autenticação](/src/actions/auth.ts). 
+Terminei o serviço de autenticação e continuei as [ações *React* de autenticação](/src/actions/auth.ts).
+
+# 2026-11-27
+Iniciei a modularizar a funcionalidade de repositório.
 
 [diagrama conceitual]: /banco/Diagrama.Conceitual.brM3
 
